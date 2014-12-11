@@ -8,19 +8,21 @@ namespace olivierdalang\mvc2000;
 
 class Sys{
 
-	public static $b = '';						//holds the base url as a string, usefull to create absolute urls...
+	// default configuration
+	public static $b = '';						//holds the base url as a string, usefull to create absolute urls...	
+	public static $defaultUri = 'home/index';	//set this using setup($conf['defaultUri'])
+	public static $autoload = [];				//set this using setup($conf['autoload'])
+
 	public static $infos = [];					//holds informations such as the loaded controller, its methods, etc...
-	
+
 	private static $m;							//holds the models that have been loaded (object)
-	private static $defaultUri = 'home/index';	//set this using setup($conf['defaultUri'])
-	private static $autoload = [];				//set this using setup($conf['autoload'])
 
 
 	/**
 	 * Decomposes the uri, and loads the controller and calls its method
 	 * @param string uri
 	 */
-	private static function loadUri($uri){
+	static function loadUri($uri){
 
 		if($uri == false){
 			$uri = self::$defaultUri;
@@ -50,7 +52,7 @@ class Sys{
 	 * @param array $parameters The parameters to pass to the method
 	 * @return void
 	 */
-	private static function loadController($name, $method, $parameters=array()){
+	static function loadController($name, $method, $parameters=array()){
 
 		if( !empty(self::$autoload)){
 			//todo maybe : if self::$autoload == '*', load the whole directory ?
