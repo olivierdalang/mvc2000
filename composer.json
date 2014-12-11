@@ -1,0 +1,6 @@
+{
+    "name": "olivierdalang/mvc2000",
+    "autoload": {
+        "files": ["system.php"]
+    }
+}
