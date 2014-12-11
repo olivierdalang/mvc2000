@@ -24,13 +24,13 @@ Then run
 
 To create a site skeletton, copy the `vendor/olivierdalang/mvc2000/default_project` folder to your project root :
 
-    cp -ri vendor/olivierdalang/mvc2000/default_project/* ./
+    cp -ri vendor/olivierdalang/mvc2000/default_project/. ./
 
 To have this step made automatically upon install, you can add this to your composer.json file :
 
     "scripts": {
         "post-install-cmd": [
-            "echo 'installing web app skeletton';cp -rn vendor/olivierdalang/mvc2000/default_project/* ./"
+            "echo 'mvc200 : installing web app skelettoninstalling web app skeletton';cp -rn vendor/olivierdalang/mvc2000/default_project/. ./"
         ]
     }
 

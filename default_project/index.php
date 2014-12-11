@@ -1,10 +1,9 @@
 <?php
 
-require('system/system.php');
-require('app/config.php');
+require 'vendor/autoload.php';
+require 'app/config.php';
 
-//Uncomment this to show the required .htaccess
-//Sys::debugShowNeededHtaccess();
+use \olivierdalang\mvc2000\Sys as Sys;
 
 Sys::setup($sysConf);
 Sys::load($_GET['uri']);
