@@ -121,26 +121,26 @@ class Sys{
 
 		if( ! file_exists( $file_to_load ) ){
 			header("HTTP/1.0 404 Not Found");
-			throw new Exception('Controller file <b>'.$file_to_load.'</b> not found.' );
+			throw new \Exception('Controller file <b>'.$file_to_load.'</b> not found.' );
 		}
 
 		require_once($file_to_load);
 
 		if( ! class_exists  ($name ) ){
 			header("HTTP/1.0 500 Internal Server Error");
-			throw new Exception('Controller <b>'.$name.'</b> class not found.' );
+			throw new \Exception('Controller <b>'.$name.'</b> class not found.' );
 		}
 
 		$controller = new $name();
 
 		if( ! method_exists($controller, $method ) ){
 			header("HTTP/1.0 404 Not Found");
-			throw new Exception('Method <b>'.$method.'()</b> not found in controller <b>'.$name.'</b>' );
+			throw new \Exception('Method <b>'.$method.'()</b> not found in controller <b>'.$name.'</b>' );
 		}
 
 		if( ! is_callable ([$controller, $method] ) ){
 			header("HTTP/1.0 405 Method Not Allowed");
-			throw new Exception('<b>'.$method.'()</b> in controller <b>'.$name.'</b> is <b>private</b> !' );
+			throw new \Exception('<b>'.$method.'()</b> in controller <b>'.$name.'</b> is <b>private</b> !' );
 		}
 
 		self::$infos['controller'] = $name;
@@ -171,7 +171,7 @@ class Sys{
 
 		if( ! file_exists ($file_to_load ) ){
 			header("HTTP/1.0 500 Internal Server Error");
-			throw new Exception('Model file <b>'.$file_to_load.'</b> not found.' );
+			throw new \Exception('Model file <b>'.$file_to_load.'</b> not found.' );
 		}
 
 		require_once($file_to_load);
@@ -179,11 +179,11 @@ class Sys{
 		$modelName = $model.'Model';
 		if( ! class_exists  ($modelName) ){
 			header("HTTP/1.0 500 Internal Server Error");
-			throw new Exception('Model <b>'.$modelName.'</b> class not found.' );
+			throw new \Exception('Model <b>'.$modelName.'</b> class not found.' );
 		}
 
 		if(self::$m === null)
-			self::$m = new stdClass();
+			self::$m = new \stdClass();
 		
 		self::$m->$model = new $modelName();
 		
@@ -193,7 +193,7 @@ class Sys{
 		$file_to_load = 'app/inc/'.$incName;
 		if( ! file_exists( $file_to_load ) ){
 			header("HTTP/1.0 500 Internal Server Error");
-			throw new Exception('Include file <b>'.$file_to_load.'</b> not found.' );
+			throw new \Exception('Include file <b>'.$file_to_load.'</b> not found.' );
 		}
 		require_once($file_to_load);
 
@@ -216,7 +216,7 @@ class Sys{
 
 		$file_to_load = 'app/views/'.$view;
 		if(!file_exists($file_to_load)){
-			throw new Exception('The view file <b>"'.$file_to_load.'"</b> could not be loaded.');
+			throw new \Exception('The view file <b>"'.$file_to_load.'"</b> could not be loaded.');
 		}
 
 		if($return){
@@ -236,7 +236,7 @@ class Sys{
 	}
 
 	static function loadDB($dsn){
-		self::$db = new PDO($dsn);
+		self::$db = new \PDO($dsn);
 	}
 
 
