@@ -1,6 +1,8 @@
 {
     "name": "olivierdalang/mvc2000",
     "autoload": {
-        "files": ["system.php"]
+        "psr-0": {
+            "olivierdalang/mvc2000": "src/"
+        }
     }
 }
