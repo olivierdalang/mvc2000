@@ -248,6 +248,8 @@ class Sys{
 
 		$directory = 'vendor/olivierdalang/mvc2000/default_project';
 
+		echo "Starting postpackage default site install\n";
+
 		$it = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory));
 
 		$it->rewind();
@@ -255,13 +257,25 @@ class Sys{
 		while($it->valid()) {
 
 		    if (!$it->isDot()) {
-		        echo 'SubPathName: ' . $it->getSubPathName() . "\n";
-		        echo 'SubPath:     ' . $it->getSubPath() . "\n";
-		        echo 'Key:         ' . $it->key() . "\n\n";
+
+		    	// create the directory if it doesn't exist
+		    	if ($it->getSubPath() && !file_exists( $it->getSubPath() )) {
+				    mkdir($it->getSubPath(), 0777, true);
+				}
+
+		    	// copy the file (we don't overwrite !)
+		    	if( !file_exists( $it->getSubPathName() ) ){
+		    		copy($it->key(),$it->getSubPathName());
+		    	}
+		    	else{
+		    		copy($it->key(),$it->getSubPathName().'~mvc2000');
+		    	}
 		    }
 
 		    $it->next();
 		}
+
+		echo "Postpackage default site install finished\n";
 
 
 	}
