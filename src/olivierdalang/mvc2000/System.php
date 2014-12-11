@@ -9,6 +9,6 @@ class System
 {
     public function sayHallo()
     {
-        return 'Hallo!';
+        echo 'Hallo!';
     }
 }
