@@ -246,9 +246,9 @@ class Sys{
 	 */
 	static function postPackageInstall(){
 
-		$directory = '../../../default_project';
+		$directory = 'vendor/olivierdalang/mvc2000/default_project';
 
-		$it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory));
+		$it = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory));
 
 		$it->rewind();
 
