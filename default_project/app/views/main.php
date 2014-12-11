@@ -8,7 +8,7 @@
 
 		<?php foreach($clients as $client): ?>
 			<div>
-				<img src="<?= \Sys::$b ?>images/icon.jpg">
+				<img src="<?= Sys::$b ?>images/icon.jpg">
 				<?= $client->name ?> : $&nbsp;<?= $client->fortune ?> / €&nbsp;<?= convertToEuros($client->fortune) ?>
 			</div>
 		<?php endforeach; ?>
