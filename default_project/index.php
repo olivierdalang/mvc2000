@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 require 'app/config.php';
 
-class_alias('\olivierdalang\mvc2000\Sys','Sys');
+use \olivierdalang\mvc2000\Sys;
 
 Sys::setup($sysConf);
-Sys::load($_GET['uri']);
+Sys::loadUri($_GET['uri']);

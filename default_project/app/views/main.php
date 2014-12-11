@@ -1,4 +1,4 @@
-<html>
+<?php use \olivierdalang\mvc2000\Sys; ?><html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	</head>

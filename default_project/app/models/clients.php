@@ -1,5 +1,7 @@
 <?php
 
+use \olivierdalang\mvc2000\Sys;
+
 class ClientsModel{
 
 	function getAll(){
