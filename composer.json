@@ -1,8 +1,8 @@
 {
     "name": "olivierdalang/mvc2000",
     "autoload": {
-        "psr-4": {
-            "olivier\\dalangmvc2000\\": "src/"
+        "psr-0": {
+            "olivierdalang\\mvc2000": "src"
         }
     }
 }
