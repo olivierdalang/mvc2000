@@ -4,6 +4,7 @@ RewriteEngine On
 
 #If an public element has been asked, we stop here
 RewriteRule ^app/public.*$ - [L]
+RewriteRule ^vendor.*$ - [L]
 
 #This transfrorms any other url into index.php?uri=URL
 RewriteRule ^(.*) index.php?uri=$1&%{QUERY_STRING} [L]
