@@ -30,7 +30,8 @@ To have this step made automatically upon install, you can add this to your comp
 
     "scripts": {
         "post-install-cmd": [
-            "echo 'mvc200 : installing web app skelettoninstalling web app skeletton';cp -rn vendor/olivierdalang/mvc2000/default_project/. ./"
+            "echo 'mvc200 : installing web app skelettoninstalling web app skeletton';',
+            "cp -rn vendor/olivierdalang/mvc2000/default_project/. ./"
         ]
     }
 
