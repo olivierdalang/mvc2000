@@ -12,10 +12,4 @@ class Page{
 
 	}
 
-	function debug(){
-
-		Sys::debug_showNeededHtaccess();
-
-	}
-
 }
