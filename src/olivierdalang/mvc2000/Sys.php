@@ -15,6 +15,7 @@ class Sys{
 	public static $infos = [];					//holds informations such as the loaded controller, its methods, etc...
 
 	private static $m;							//holds the models that have been loaded (object)
+	private static $p;							//holds the plugins that have been loaded (object)
 
 
 	/**

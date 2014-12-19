@@ -6,4 +6,4 @@ Sys::$b = '/'; 						//holds the base url as a string, usefull to create absolut
 Sys::$defaultUri = 'page/index';	//default controller/method when none is specified
 
 //modules to load
-Sys::loadModule('database',['pgsql:host=localhost;port=5432;dbname=mydb;user=postgres;password=postgres']);		
+Sys::loadPlugin('database',['pgsql:host=localhost;port=5432;dbname=mydb;user=postgres;password=postgres']);		
