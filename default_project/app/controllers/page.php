@@ -2,7 +2,7 @@
 
 use \olivierdalang\mvc2000\Sys;
 
-class Page{
+class PageController{
 
 	function index(){
 

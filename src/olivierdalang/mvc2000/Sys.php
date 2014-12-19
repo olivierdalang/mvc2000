@@ -11,7 +11,6 @@ class Sys{
 	// default configuration
 	public static $b = '';						//holds the base url as a string, usefull to create absolute urls...	
 	public static $defaultUri = 'home/index';	//set this using setup($conf['defaultUri'])
-	public static $autoload = [];				//set this using setup($conf['autoload'])
 
 	public static $infos = [];					//holds informations such as the loaded controller, its methods, etc...
 
@@ -54,13 +53,6 @@ class Sys{
 	 */
 	static function loadController($name, $method, $parameters=array()){
 
-		if( !empty(self::$autoload)){
-			//todo maybe : if self::$autoload == '*', load the whole directory ?
-			foreach(self::$autoload as $file_to_autoload){
-				self::loadInc($file_to_autoload);
-			}
-		}
-
 		$file_to_load = 'app/controllers/'.$name.'.php';
 
 		if( ! file_exists( $file_to_load ) ){
@@ -70,12 +62,13 @@ class Sys{
 
 		require_once($file_to_load);
 
-		if( ! class_exists  ($name ) ){
+		$controllerName = $model.'Controller';
+		if( ! class_exists  ($controllerName) ){
 			header("HTTP/1.0 500 Internal Server Error");
-			throw new \Exception('Controller <b>'.$name.'</b> class not found.' );
+			throw new \Exception('Controller <b>'.$controllerName.'</b> class not found.' );
 		}
 
-		$controller = new $name();
+		$controller = new $controllerName();
 
 		if( ! method_exists($controller, $method ) ){
 			header("HTTP/1.0 404 Not Found");
@@ -133,15 +126,44 @@ class Sys{
 		
 		return self::$m->$model;
 	}
-	static function loadInc($incName){
-		$file_to_load = 'app/inc/'.$incName;
-		if( ! file_exists( $file_to_load ) ){
-			header("HTTP/1.0 500 Internal Server Error");
-			throw new \Exception('Include file <b>'.$file_to_load.'</b> not found.' );
+
+	/**
+	 * Alias for loadModel
+	 */
+	static function p($plugin,$arguments=[]){
+		return self::loadPlugin($model,$arguments);
+	}
+
+	static function loadPlugin($plugin,$arguments=[]){
+
+		if( isset(self::$p->$plugin) ){
+			return self::$p->$plugin;
 		}
+
+		$file_to_load = 'app/plugins/'.$plugin.'.php';
+
+		if( ! file_exists ($file_to_load ) ){
+			header("HTTP/1.0 500 Internal Server Error");
+			throw new \Exception('Plugin file <b>'.$file_to_load.'</b> not found.' );
+		}
+
 		require_once($file_to_load);
 
+		$pluginName = $plugin.'Plugin';
+		if( ! class_exists  ($pluginName) ){
+			header("HTTP/1.0 500 Internal Server Error");
+			throw new \Exception('Plugin <b>'.$pluginName.'</b> class not found.' );
+		}
+
+		if(self::$p === null)
+			self::$p = new \stdClass();
+		
+		$class = new ReflectionClass($pluginName);		
+		self::$p->$plugin = $class->newInstance($arguments);
+		
+		return self::$p->$plugin;
 	}
+
 	/**
 	 *Alias for loadView
 	 */
