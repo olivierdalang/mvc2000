@@ -63,7 +63,7 @@ class Sys{
 
 		require_once($file_to_load);
 
-		$controllerName = $model.'Controller';
+		$controllerName = $name.'Controller';
 		if( ! class_exists  ($controllerName) ){
 			header("HTTP/1.0 500 Internal Server Error");
 			throw new \Exception('Controller <b>'.$controllerName.'</b> class not found.' );
