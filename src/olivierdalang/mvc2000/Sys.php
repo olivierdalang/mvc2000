@@ -132,7 +132,7 @@ class Sys{
 	 * Alias for loadModel
 	 */
 	static function p($plugin,$arguments=[]){
-		return self::loadPlugin($model,$arguments);
+		return self::loadPlugin($plugin,$arguments);
 	}
 
 	static function loadPlugin($plugin,$arguments=[]){
