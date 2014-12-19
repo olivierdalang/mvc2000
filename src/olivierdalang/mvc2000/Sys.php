@@ -159,8 +159,8 @@ class Sys{
 		if(self::$p === null)
 			self::$p = new \stdClass();
 		
-		$class = new ReflectionClass($pluginName);		
-		self::$p->$plugin = $class->newInstance($arguments);
+		$class = new \ReflectionClass($pluginName);		
+		self::$p->$plugin = $class->newInstanceArgs($arguments);
 		
 		return self::$p->$plugin;
 	}
