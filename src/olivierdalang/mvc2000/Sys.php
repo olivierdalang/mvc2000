@@ -32,8 +32,16 @@ class Sys{
 		$uri = explode('/',$uri);
 
 		//Interpretation of the URI
-		$controllerName = array_shift($uri);	//TODO IMPORTANT : sanitize (no directory browsing)
-		$methodName = array_shift($uri)?:'index';	//TODO IMPORTANT : sanitize (no method starting by _)
+		$controllerName = array_shift($uri);	
+		//sanitize (no directory browsing)
+		if(strstr($controllerName,'/')!==false or strstr($controllerName,'\\')!==false or strstr($controllerName,'.')!==false){
+			throw new Exception("Disallowed character in controller name");				
+		}
+		$methodName = array_shift($uri)?:'index';	
+		//sanitize (no directory browsing)
+		if(strstr($methodName,'/')!==false or strstr($methodName,'\\')!==false or strstr($methodName,'.')!==false){
+			throw new Exception("Disallowed character in method name");				
+		}
 		$parameters = $uri;
 
 		self::loadController($controllerName, $methodName, $parameters);
